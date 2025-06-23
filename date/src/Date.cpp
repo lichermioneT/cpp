@@ -152,6 +152,9 @@ int date::operator-(const date& d) const {
     return n;
 }
 
+
+
+
 date* date::operator&() {
     return this;
 }
