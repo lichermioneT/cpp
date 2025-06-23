@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/Date.h
+iostream
+-
+
+/home/lic/Desktop/code/c_c++/c++/c++项目/date/src/Date.cpp
+Date.h
+/home/lic/Desktop/code/c_c++/c++/c++项目/date/src/Date.h
+
+/home/lic/Desktop/code/c_c++/c++/c++项目/date/src/main.cpp
+Date.h
+/home/lic/Desktop/code/c_c++/c++/c++项目/date/src/Date.h
+iostream
+-
+

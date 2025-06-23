@@ -9,7 +9,7 @@ namespace N
     int a = 10;
     int b = 20;
 
-    int add(int left, int right)
+    int add1(int left, int right)
     {
         return left + right;
     }
@@ -112,9 +112,18 @@ int main()
     // 三种使用方式命名空间
 
     // cout<< N::a <<endl;
-    // cout<< N::add(55, 66) <<endl;
+    // cout<< N::add1(55, 66) <<endl;
 
+    // {
+    //     using N::a;
+    //     cout<< a <<endl;
+    // }
     
+    // {
+    //     using namespace N;
+    //     cout<< add1(22, 44) <<endl;
+    // }
+
 // c++的输入和输出 iostream 输入输出流
 // cout
     // cout<< "hello world" <<endl;   // 自动识别这里面是字符串
@@ -217,5 +226,8 @@ int main()
     *p = 55;
     cout<< i <<endl;
     cout<< *p <<endl;
+
+
+// 临时变量具有常属性
     return 0;
 }

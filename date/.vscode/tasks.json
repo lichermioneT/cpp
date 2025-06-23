@@ -1,0 +1,30 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "type": "cppbuild",
+        "label": "构建整个项目",
+        "command": "/usr/bin/g++",
+        "args": [
+          "-fdiagnostics-color=always",
+          "-g",
+          "${workspaceFolder}/src/*.cpp",
+          "-I${workspaceFolder}/include",
+          "-o",
+          "${workspaceFolder}/exe/main"
+        ],
+        "options": {
+          "cwd": "${workspaceFolder}"
+        },
+        "problemMatcher": [
+          "$gcc"
+        ],
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        },
+        "detail": "使用 g++ 编译整个项目"
+      }
+    ]
+  }
+  
