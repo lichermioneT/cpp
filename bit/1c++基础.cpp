@@ -20,6 +20,39 @@ namespace N
 }
 
 
+void Func(int x = 1, int y = 2, int z = 3)
+{
+    cout<< "x = " << x <<endl;
+    cout<< "y = " << y <<endl;
+    cout<< "z = " << z <<endl;
+}
+
+void Func2(int x, int y = 2, int z = 3)
+{
+    cout<< "x = " << x <<endl;
+    cout<< "y = " << y <<endl;
+    cout<< "z = " << z <<endl;
+}
+
+
+int add(int x, int y)
+{
+    return x + y;
+}
+
+int add(int x, int y, int z)
+{
+    return x + y + z;
+}
+
+int add(int x, int y, double d)
+{
+    return x + y + (int)d;
+}
+
+
+
+
 int main()
 {
 
@@ -50,6 +83,54 @@ int main()
     cout<< "a = " << a <<endl;
 */
 
+
+/*
+    int num = 0;
+    char ch = '0';
+    cin>>num>>ch;
+    cout<< "num = " << num <<endl;
+    cout<< "ch = " << ch <<endl;
+*/
+
+
+// 缺省参数
+// 半缺省只能是从右往左
+// 参数连续串
+// 缺省参数也叫默认参数
+// 默认参数可以不传，不是默认参数的必须传参数
+
+/*
+    Func();
+    Func(2);
+*/
+
+// 函数重载
+// 函数名修饰规则
+    cout<< add(2, 4) <<endl;
+    cout<< add(2, 4, 4) <<endl;
+    cout<< add(2, 4, 4.2) <<endl;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
 
 
     return 0;
