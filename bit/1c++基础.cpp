@@ -50,8 +50,15 @@ int add(int x, int y, double d)
     return x + y + (int)d;
 }
 
+void print(int x)
+{
+    cout<< "x = " << x <<endl;
+}
 
-
+void print(double x)
+{
+    cout<< "x = " << x <<endl;
+}
 
 int main()
 {
@@ -106,11 +113,21 @@ int main()
 
 // 函数重载
 // 函数名修饰规则
+// 参数个数，类型，顺序
+// 返回值没有要求的,返回值不构成重载
     cout<< add(2, 4) <<endl;
     cout<< add(2, 4, 4) <<endl;
     cout<< add(2, 4, 4.2) <<endl;
 
+    print(55);
+    print(66.2);
 
+// 函数重载更深的理解：函数名修饰规则。
+// 什么是函数重载
+// c++是如何支持函数重载的，为什么c语言不支持。
+// g++ -c test.cpp -o test.o
+// nm test.o
+ 
 
 
 
