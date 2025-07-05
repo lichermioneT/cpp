@@ -50,25 +50,15 @@ int add(int x, int y, double d)
     return x + y + (int)d;
 }
 
-void print(int x)
-{
-    cout<< "x = " << x <<endl;
-}
 
-void print(double x)
-{
-    cout<< "x = " << x <<endl;
-}
+
+// extren "C" int add()
+// 按照c语言的规则编译
 
 int main()
 {
 
-//  int num1 = 55;
-//  cout<< "num1 = " << num1 <<endl;
-
 /*
-    cout<< N::num1 <<endl;
-
     {
         using N::num1;
         cout<< num1 <<endl;
@@ -115,40 +105,55 @@ int main()
 // 函数名修饰规则
 // 参数个数，类型，顺序
 // 返回值没有要求的,返回值不构成重载
+/*
     cout<< add(2, 4) <<endl;
     cout<< add(2, 4, 4) <<endl;
     cout<< add(2, 4, 4.2) <<endl;
-
-    print(55);
-    print(66.2);
+*/
 
 // 函数重载更深的理解：函数名修饰规则。
 // 什么是函数重载
 // c++是如何支持函数重载的，为什么c语言不支持。
 // g++ -c test.cpp -o test.o
 // nm test.o
- 
+//  
 
 
+// 引用
+// 引用语法
+// 类型& 别名 = 变量名
 
+    /* int a = 55; */
+    /* int& ra = a; */
+    /* cout<< ra <<endl; */
 
+    /* ra = 55; */
 
+    /* cout<< ra <<endl; */
+    /* cout<< a  <<endl; */
+    /* cout<< &a <<endl; */
+    /* cout<< &ra <<endl; */
 
+// 引用定义的时候初始化
+// 一个变量多个引用
+// 一个引用绑定了一个实体就不能切换
 
+/* 权限只能缩小，不能方法 */
 
+    const int a = 0;
+    const int& b = a;
 
+    int c = 55;
+    int& d = c;
+    const int& e = c;
 
+    const int f = 99;
+    const int& h = f;
 
-
-
-
-
-
-
-
-
-    
-
+/* 临时变量具有常属性 */
+/* 隐士类型转换 */
+    int i = 66;
+    const double& di = i;
 
     return 0;
 }
