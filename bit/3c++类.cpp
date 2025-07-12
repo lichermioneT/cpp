@@ -64,6 +64,15 @@ struct listnode_cpp
 class Date
 {
 public:
+    // 一般推荐是全缺省的
+    // 函数名和类名一样，没有返回值
+    Date(int year = 2000, int month = 2, int day = 10)
+    {
+        this->_year = year;
+        this->_month = month;
+        this->_day = day;
+    }
+
     void Init(int year, int month, int day)
     {
        this->_year = year;
@@ -81,6 +90,70 @@ private:
     int _month;
     int _day;
 };
+
+class a
+{
+public:
+    void pinrt()
+    {
+        cout<< " jjj" <<endl;
+    }
+    
+    void printa()
+    {
+        cout<<this->_a <<endl;
+    }
+
+
+private:
+    int _a;
+
+};
+
+class TIME
+{
+public:
+    TIME()
+    {
+        cout<< " TIME" <<endl;
+    }
+private:
+    int _hour;
+    int _mintes;
+    int _second;
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 int main()
@@ -110,22 +183,32 @@ int main()
 // 解释：开一个字节，不是为了存放数据，是为了占位表示对象存在。
 
 // 隐含的this指针
-    Date d1;
+// 谁调用这个成员函数，这个this指针就指向谁
+    /* Date d1; */
     /* d1.print(&d1); */
 
+// this指针存在哪里的? 栈区，因为它是函数的一个参数。vs下存在ecx寄存器里面的。
+// this指针可以为空吗？
+
+    // 指针调用，传参就是这个指针
+    /* a* ap = NULL; */
+    /* ap->pinrt(); */
+    /* ap->printa(); */
+
+// 寄存器
+// 缓存
+// 内存
+// 硬盘  机械硬盘，SSD
+// 远程网络存储
+// 以后当一个活学活用的程序员！！！！！！！！！！！！！！！！！！！！！！！！！！！！
 
 
 
-
-
-
-
-
-
-
-
-
-
+// 只要涉及一个类，就是六个默认成员函数
+// 构造函数，对象构造是调用，这个函数完成初始化。
+    Date d(2000,2,18);
+    Date d2; // 
+// 构造函数可以重载
 
 
 
