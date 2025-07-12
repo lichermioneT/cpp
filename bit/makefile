@@ -1,2 +1,2 @@
-mytest:1c++基础.cpp
-	g++ 1c++基础.cpp -o test
+mytest:4c++类.cpp
+	g++ 4c++类.cpp
