@@ -4,7 +4,7 @@ using namespace std;
 class Date
 {
 public:
-    int GetMonthsDays(int year, int month)
+    int GetMonthsDays(int year, int month) const
     {
       static int daysInMonth[13] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
         
@@ -46,7 +46,7 @@ public:
         this->_day = that._day;
     }
     
-    void print()
+    void print() const
     {
         cout<< this->_year << "-" << this->_month << "-" << this->_day <<endl;
     }
@@ -101,7 +101,7 @@ public:
     
 
 // d1 + 10 不能修改原来的值
-    Date operator+(int n)
+    Date operator+(int n) const
     {
         Date ret = *this;
         ret._day += n;
@@ -136,7 +136,7 @@ public:
     }
 
 // d1 - 10
-    Date operator-(int n)
+    Date operator-(int n) const
     {
         Date ret = *this;
         // ret -= n;
@@ -178,7 +178,7 @@ public:
     }
 
 // d++
-    Date operator++(int)
+    Date operator++(int) const
     {
         Date ret(*this);
         ret += 1;
@@ -192,7 +192,7 @@ public:
         return *this;
     }
 // d--
-    Date operator--(int)
+    Date operator--(int) const
     {
         Date ret(*this);
         ret -= 1;
@@ -200,7 +200,7 @@ public:
     }
 
 // 日期减日期
-    int operator-(const Date& that)
+    int operator-(const Date& that) const
     {   
         int flag = 1;
         Date max = *this;
