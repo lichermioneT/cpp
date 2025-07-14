@@ -2,6 +2,19 @@
 #include <typeinfo>
 using namespace std;
 
+/*
+1.引用的权限
+2.引用做函数参数
+3.引用做函数返回值
+4.inline修饰函数
+5.auto关键字
+6.范围for(配合auto关键字使用)
+7.c++空指针nullptr
+8.c++类和c语言结构体
+ */
+
+
+
 void SWAP(int& a, int& b)
 {
     int temp = a;
@@ -266,39 +279,6 @@ int main()
 //  class默认是私有的访问限定符
 //  struct默认是公有的访问限定符
 //  c++支持c语言，struct可以当做结构体用
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     return 0;
 }
 
