@@ -1,6 +1,22 @@
 #include <iostream>
 using namespace std;
+/*
 
+1.拷贝构造
+    用一个已经存在的对象初始化一个不存在的对象
+    存在问题：深浅拷贝
+2.赋值构造
+    两个对象都在了
+    想把一个值赋值给另一个
+3.运算符重载
+    返回值 opearator 操作符 （函数参数）
+
+
+
+
+
+
+ */
 class TIME
 {
     ~TIME()
