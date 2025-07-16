@@ -1,2 +1,2 @@
-mytest:7c++类.cpp
-	g++ 7c++类.cpp
+mytest:8内存管理.cpp
+	g++ 8内存管理.cpp
