@@ -1,2 +1,2 @@
-mytest:9内存管理.cpp
-	g++ 9内存管理.cpp
+mytest:10STL_string.cpp
+	g++ 10STL_string.cpp
