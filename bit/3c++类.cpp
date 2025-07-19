@@ -143,11 +143,6 @@ private:
 
 class Date2
 {
-
-
-
-
-
 private:
     int _year;
     int _month;
