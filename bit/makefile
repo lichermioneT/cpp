@@ -1,2 +1,2 @@
-mytest:12string_2.cpp
-	g++ 12string_2.cpp
+mytest:13string_3.cpp
+	g++ 13string_3.cpp

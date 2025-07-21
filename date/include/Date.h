@@ -2,7 +2,8 @@
 #include <iostream>
 using namespace std;
 
-class date {
+class date 
+{
 private:
     int _year;
     int _month;
