@@ -219,11 +219,353 @@ private:
 }
 
 
+namespace lic3
+{   
+    using std::endl;
+    using std::cout;
+    using std::cin;
+    using std::ostream;
+class string
+{
+public:
+    typedef char* iterator;
+    
+    iterator begin()
+    {
+        return _str;
+    }
+        
+    iterator end()
+    {
+        return _str + _size;
+    }
+    string(const char* str = "")
+    {
+        _str = new char[strlen(str) + 1];
+        strcpy(_str, str);
+        _size = _capacity = strlen(str);
+    }
+    
+    ~string()
+    {
+        delete[] _str;
+        _size = _capacity = 0;
+    }
+    
+    // 拷贝构造
+    // 赋值构造
+
+    size_t size() const
+    {
+        return _size;
+    }
+
+    size_t capacity() const
+    {
+        return _capacity;
+    }
+    
+    char& operator[](size_t i)
+    {
+        assert(i < _size);
+        return _str[i];
+    }
+    
+    const char& operator[](size_t i) const
+    {
+        assert(i < _size);
+        return _str[i];
+    }
+
+    
+    const char* c_str()
+    {
+        return _str;
+    }
+
+    // ostream& operator<<(ostream& out, const string& s)
+    // {
+    //     for(size_t i = 0; i < s.size(); i++)
+    //     {
+    //         cout<< s[i];
+    //     }
+
+    //     return out;
+    // }
+        
+    // 输入
+
+    void push_back(char ch)
+    {
+        if(_size == _capacity)
+        {
+            size_t newcapacity = _capacity == 0 ? 2 : _capacity * 2;
+            char* tmp = new char[newcapacity + 1];
+            strcpy(tmp, _str);
+            delete  _str;
+            _str = tmp;
+            _capacity = newcapacity;
+        }
+        
+        _str[_size] = ch;
+        ++_size;
+        _str[_size] = '\0'; // 最后一个位置你得存放斜杠零
+    }
+    
+    void append(const char* str)
+    {
+        size_t len = strlen(str);
+        if(_size + len > _capacity)
+        {
+            size_t newcapacity = _size + len;
+            char* newstr = new char[newcapacity + 1];
+            strcpy(newstr, _str);
+            delete[] _str;
+            _str = newstr;
+            _capacity = newcapacity;
+        }
+
+        strcpy(_str+_size, str);
+        _size = _size + len;
+    }
+
+    void reserve(int n)
+    {
+        if(n > _capacity)
+        {
+            char* newstr = new char[n + 1];
+            strcpy(newstr, _str);
+            delete[] _str;
+            _str = newstr;
+            _capacity = n;
+        }
+    }
+    
+    string& operator+=(char ch)
+    {
+        this->push_back(ch);
+        return *this;
+    }
+
+    string& operator+=(const char* str)
+    {
+        this->append(str);
+        return *this;
+    }
+
+
+    void resize(size_t n, char ch)
+    {
+
+    }
+
+    // void insert(size_t pos, char ch);
+    // void insert(size_t pos, const char* str);
+    // void erase(size_t pos, size_t len = npos);
+    // size_t find(char ch, size_t pos = 0);
+    // size_t find(const char* str, size_t pos = 0);
+    // bool operator<(const string& s);
+    // bool operator>(const string& s);
+    // bool operator<=(const string& s);
+    // bool operator>=(const string& s);
+    // bool operator==(const string& s);
+    // bool operator!=(const string& s);
+    
+    
+    // insert：插入字符
+        void insert(size_t pos, char ch)
+        {
+            assert(pos <= _size);
+            if (_size + 1 >= _capacity)
+                reserve(_capacity * 2);
+
+            for (size_t i = _size; i > pos; --i)
+                _str[i] = _str[i - 1];
+
+            _str[pos] = ch;
+            ++_size;
+            _str[_size] = '\0';
+        }
+
+        // insert：插入字符串
+        void insert(size_t pos, const char* str)
+        {
+            assert(pos <= _size);
+            size_t len = strlen(str);
+            if (_size + len >= _capacity)
+                reserve(_size + len + 1);
+
+            for (size_t i = _size + len - 1; i >= pos + len; --i)
+                _str[i] = _str[i - len];
+
+            for (size_t i = 0; i < len; ++i)
+                _str[pos + i] = str[i];
+
+            _size += len;
+            _str[_size] = '\0';
+        }
+
+        // erase：删除字符
+        void erase(size_t pos, size_t len = npos)
+        {
+            assert(pos <= _size);
+            if (len == npos || pos + len >= _size)
+            {
+                _str[pos] = '\0';
+                _size = pos;
+            }
+            else
+            {
+                for (size_t i = pos + len; i <= _size; ++i)
+                    _str[i - len] = _str[i];
+
+                _size -= len;
+            }
+        }
+
+        // find：查找字符
+        size_t find(char ch, size_t pos = 0)
+        {
+            for (size_t i = pos; i < _size; ++i)
+            {
+                if (_str[i] == ch)
+                    return i;
+            }
+            return npos;
+        }
+
+        // find：查找字符串
+        size_t find(const char* str, size_t pos = 0)
+        {
+            size_t len = strlen(str);
+            if (len == 0 || len > _size)
+                return npos;
+
+            for (size_t i = pos; i <= _size - len; ++i)
+            {
+                size_t j = 0;
+                for (; j < len; ++j)
+                {
+                    if (_str[i + j] != str[j])
+                        break;
+                }
+
+                if (j == len)
+                    return i;
+            }
+
+            return npos;
+        }
+
+        // 比较函数
+        int compare(const string& s) const
+        {
+            size_t i = 0;
+            while (i < _size && i < s._size)
+            {
+                if (_str[i] < s._str[i]) return -1;
+                if (_str[i] > s._str[i]) return 1;
+                ++i;
+            }
+            if (_size < s._size) return -1;
+            if (_size > s._size) return 1;
+            return 0;
+        }
+
+        // 比较运算符
+        bool operator<(const string& s) { return compare(s) < 0; }
+        bool operator>(const string& s) { return compare(s) > 0; }
+        bool operator<=(const string& s) { return compare(s) <= 0; }
+        bool operator>=(const string& s) { return compare(s) >= 0; }
+        bool operator==(const string& s) { return compare(s) == 0; }
+        bool operator!=(const string& s) { return compare(s) != 0; }
+
+        // 输出支持
+        // const char* c_str() const { return _str; }
+        // size_t size() const { return _size; }
+
+
+private:
+    char* _str;
+    size_t _size;
+    size_t _capacity;
+    static size_t npos;
+};
+
+    size_t string::npos = -1;
+
+    ostream& operator<<(ostream& out, const string& s)
+    {
+        for(size_t i = 0; i < s.size(); i++)
+        {
+            out<< s[i];
+        }
+
+        return out;
+    }
+    
+void test()
+{
+    string s1;
+    string s2("lic");
+    cout<< s1 <<endl;
+    cout<< s2 <<endl;
+
+    for(size_t i = 0; i < s2.size(); i++)
+    {
+        s2[i] += 1;
+        cout<< s2[i] << " ";
+    }
+    cout<<endl;
+
+    string::iterator it = s2.begin();
+    while(it != s2.end())
+    {
+        *it -= 1;
+        cout<< *it << " ";
+        it++;
+    }
+
+    cout<<endl;
+
+// 范围for最终会被编译器替换成迭代器
+// iterator begin() end()  有这三个东西才行的
+    for(auto e : s2)
+    {
+        cout<< e << " ";
+    }
+    cout<<endl;
+
+    s2.push_back('x');
+    s2.push_back('x');
+    s2.push_back('x');
+    s2.push_back('x');
+    s2.push_back('x');
+    s2.push_back('x');
+    s2.push_back('x');
+    
+    s2.append("lic");
+    cout<< s2 <<endl;
+    s2.append("fadssssss");
+    s2 += "licda";
+    s2 += 'c';
+    
+    cout<< s2 <<endl;
+}
+
+    
+
+
+
+
+}
+
+
 int main()
 {
 
-    test();
-
+    // test();
+    lic3::test();
 
 }
 
