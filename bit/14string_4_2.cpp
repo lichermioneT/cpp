@@ -180,7 +180,7 @@ public:
     string& erase(size_t pos, size_t len  = npos)
     {       
             // 删除长字符串
-            if(len > (_size - pos))
+            if(len > (_size - npos))
             {
                 _str[pos] = '\0';
                 _size = pos;
@@ -357,29 +357,29 @@ class string
 {
 
 public:
+
     string(const char* str = "")
         :_str(new char[strlen(str) + 1])
     {
             strcpy(_str, str);
     }
 
-// 传统拷贝 
+// 传统拷贝
     // string(const string& s)
     //     :_str(new char[strlen(s._str) + 1])
     // {
     //     strcpy(_str, s._str);
     // }
 
-// 现代写法
-
+// 现代拷贝构造
     string(const string& s)
         :_str(nullptr)
     {
-        string temp(s._str);
+        string temp(s._str); // 构造一个一模一样的
         swap(_str, temp._str);
     }
 
-    
+// 传统赋值构造
     // string& operator=(const string& s)
     // {   
     //     if(this != &s)
@@ -398,22 +398,26 @@ public:
 
 // 现代写法
 
-    // string& operator=(const string& s)
-    // {
+    string& operator=(const string& s)
+    {
 
-    //     if(this != &s)
-    //     {
-    //         string temp(s);
-    //         swap(_str, temp._str);
-    //     }
-    //     return *this;
+        if(this != &s)
+        {
+            string temp(s);
+            swap(_str, temp._str);
+        }
+        return *this;
 
-    // }
+    }
 
 
     string& operator=(string& s)
     {
-        swap(_str, s._str);
+        if(this != &s)
+        {
+            string temp(s);
+            swap(_str, temp._str);
+        }
         return *this;
     }
 

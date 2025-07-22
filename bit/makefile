@@ -1,3 +1,3 @@
-mytest: 14string_4_2.cpp
+mytest: 15vector_1.cpp
 # mkdir -p ./exe
-	g++ 14string_4_2.cpp -o ./exe/mytest
+	g++ 15vector_1.cpp
