@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -130,16 +131,59 @@ void test5()
 {
 
     vector<int> v = {1,2,3,4,5};
-    // v[5];
-    // v.at[5];
+    v[1];
+    v.at(1);
 }
 
 
+// 
+// 注意vector插入数据只能是传入迭代器
+// erase也只能传入迭代器的
+void test6()
+{
+
+    vector<int> v = {1,2,3,4,5,6,7,8,9,10};
+    v.insert(v.begin(), 0);
+    for(auto e: v)
+    {
+        cout<< e << " ";
+    }
+    cout<<endl;
+    v.insert(v.begin(), -1);
+
+    for(auto e: v)
+    {
+        cout<< e << " ";
+    }
+    cout<<endl;
+    
+
+}
 
 
+void test7()
+{
 
+    vector<int> v = {11111,7777,555,66,1,2,3,4,5,6,7,8,8,855};
+    v.erase(v.begin()); 
+    for(auto e : v)
+    {
+        cout<< e << " ";
+    }
+    cout<<endl;
+    
+    auto it =  find(v.begin(), v.end(), 7); // 实际上是一个函数模版
+                                            // [first , last)
+                                            // 迭代器基本的都是左闭右开
+    cout<< *it <<endl;
+    sort(v.begin(), v.end());
 
-
+    for(auto e : v)
+    {
+        cout<< e << "  ";
+    }
+    cout<<endl;
+}
 
 
 
@@ -173,7 +217,10 @@ int main()
     // test2();
     // test3();
     // test4();
-    test5();
+    // test5();
+    // test6();
+    //
+    test7();
     return 0;
 }
 

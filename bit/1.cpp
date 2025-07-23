@@ -1,40 +1,46 @@
 #include<iostream>
 using namespace std;
 
-template<class T>
-T add(T& x, T& y)
+class A
 {
-    return x + y;
-}
+public:    
+    void print()
+    {
+        cout<< x <<endl;
+        cout<< y <<endl;
+        cout<< z <<endl;
+        cout << y2 << endl;
+        cout << z2 << endl;
+    }
+
+    static const int y2 = 66;
+
+    // public 的静态变量（类外初始化）
+    static int z2;
+
+private:
+    const int x = 55;
+    static const int y = 66;
+    
+    // 私有静态变量，必须在类外初始化
+    static int z;
+
+};
 
 
-template<class T>
-void Swap(T& x1, T& x2)
-{
-    T temp = x1;
-    x1 = x2;
-    x2 = temp;
-}
+int A::z = 77;
+int A::z2 = 99;
 
 int main()
 {
+    A a;
+    a.print();
 
-// 类型的自定义推导
-    int a = 1;
-    int b = 2;
-    cout<< add(a, b) <<endl;
-    Swap(a,b);
 
-    char ch1 = 'z';
-    char ch2 = 'a';
-    cout<< add(ch1, ch2) <<endl;
-    Swap(ch1, ch2);
+// static修饰的属性和方法，直接突破类域酒可以访问了。
+// 前提是公共的，访问限定符。
+// 常量可以初始化在类里面，变量就不行的
 
-    float f1 = 55.2f;
-    float f2 = 55.2f;
-
-// 显示的自定义类型
-    float f3 = add<float>(f1,f2);
-    cout<< f3 <<endl;
-
+    cout<< A::y2 <<endl;
+    cout<< A::z2 <<endl;
 }
