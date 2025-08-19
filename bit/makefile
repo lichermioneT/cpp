@@ -1,3 +1,3 @@
-mytest: 17vector_3.cpp
+mytest: 18list_1.cpp
 # mkdir -p ./exe
-	g++ 17vector_3.cpp
+	g++ 18list_1.cpp
