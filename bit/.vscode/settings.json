@@ -1,7 +1,7 @@
 {
     "files.associations": {
-        "iosfwd": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "ostream": "cpp"
     },
     "python.autoComplete.extraPaths": [
         "/home/lic/Desktop/catkin_ws/devel/lib/python3/dist-packages",
