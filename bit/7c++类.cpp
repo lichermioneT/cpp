@@ -107,7 +107,7 @@ class date4
 {
     friend void f4(const date4& d);
     friend ostream& operator<<(ostream& out, const date4& d);
-    friend istream& operator>>(istream& cn, dadte4& d);
+    friend istream& operator>>(istream& cn, date4& d);
     // friend class d 有元类
 public:
     date4(int year = 0, int month = 0, int day = 0)
@@ -145,7 +145,7 @@ ostream& operator<<(ostream& out, const date4& d)
     return out;
 }
 
-istream& operator>>(istream& cn, dadte4& d)
+istream& operator>>(istream& cn, date4& d)
 {
     cn>>d._year>>d._month>>d._day;
     return cn;

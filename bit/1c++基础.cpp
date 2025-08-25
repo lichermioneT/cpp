@@ -61,24 +61,30 @@ int add(int x, int y, double d)
 }
 
 
-
+extern "C"  int sub(int x, int y)
+{
+    return x = y;
+}
 // extren "C" int add()
 // 按照c语言的规则编译
 
 int main()
 {
 
-/*
-    {
-        using N::num1;
-        cout<< num1 <<endl;
-    }
+
+    // {
+    //     using N::num1;
+    //     cout<< "N::num1 = "<< num1 <<endl;
+    // }
     
-    {
-        using namespace N;
-        cout<< N::num1 <<endl;
-    }
-*/
+    // {
+    //     using namespace N;
+    //     cout<< "using namespace N = "<< N::num1 <<endl;
+    //     cout<< "num1 = " << num1 <<endl;
+    //     cout<< "num2 = " << num2 <<endl;
+    // }
+
+// end line = endl;
 
 /*
     cout<< "hello world\n";
