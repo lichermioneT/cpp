@@ -24,7 +24,7 @@ class BSTree
     typedef struct BSTreeNode<k> Node;
 public:
 
-    bool Insert(const k& key)
+    bool Insert(const k& key) // 不允许重复数据
     {
         if(_root == nullptr)
         {
@@ -34,6 +34,7 @@ public:
         
         Node* cur = _root;
         Node* parent = nullptr;
+
         while(cur != nullptr)
         {
             if(cur->_Key < key)
@@ -52,6 +53,8 @@ public:
             }
         }
 
+        // 这里判断最后的左右
+        // 然后连接起来
         cur = new Node(key);
         if(parent->_Key < key)
         {
@@ -62,7 +65,7 @@ public:
             parent->left = cur;
         }
 
-        return false;
+        return true;
     }
 
     void _InOrder(Node* root)
@@ -74,7 +77,7 @@ public:
         _InOrder(root->right);
     }
 
-    void _InOrder()
+    void InOrder()
     {
         _InOrder(_root);
         cout<<endl;
@@ -84,15 +87,16 @@ public:
     bool Find(const k& key)
     {
         Node* cur = _root;
+
         while(cur != nullptr)
         {
             if(cur->_Key > key)
             {
-                cur = cur->right;
+                cur = cur->left;
             }
             else if(cur->_Key < key)
             {
-                cur = cur->left;
+                cur = cur->right;
             }
             else
             {
@@ -129,35 +133,52 @@ public:
             {
                 
                 if(cur->left == nullptr)
-                {
-                    if(parent->right == cur)
-                    {   
-
-                        parent->right = cur->right;
+                {   
+                    if(cur == _root)
+                    {
+                        _root = cur->right;
                     }
                     else
                     {
-                        parent->left = cur->right;
+                        if(parent->right == cur)
+                        {   
+
+                            parent->right = cur->right;
+                        }
+                        else
+                        {
+                            parent->left = cur->right;
+                        }
                     }
+
 
                     delete cur;
                 }
+
                 else if(cur->right == nullptr)
                 {
-                    if(parent->left == cur)
+                    if(cur == _root)
                     {
-                        parent->left = cur->left;
+                        _root = cur->left;
                     }
                     else
                     {
-                        parent->right = cur->left;
+                        if(parent->left == cur)
+                        {
+                            parent->left = cur->left;
+                        }
+                        else
+                        {
+                            parent->right = cur->left;
+                        }
                     }
-
                     delete cur;
                 }
+                
                 else
                 {   
-                    Node* rightMinParent = nullptr;
+                    Node* rightMinParent = cur;
+
                     Node* rightMin = cur->right;
                     while(rightMin->left != nullptr)
                     {   
@@ -166,8 +187,26 @@ public:
                     }
 
                     cur->_Key = rightMin->_Key;
-                    rightMinParent->left = rightMin->right;
 
+                    // if(rightMinParent == nullptr)  
+                    // {
+                    //     // 说明 rightMin 就是 cur->right
+                    //     cur->right = rightMin->right;
+                    // }
+                    // else
+                    // {
+                    //     // 正常情况：删除 rightMin
+                    //     rightMinParent->left = rightMin->right;
+                    // }
+
+                    if(rightMin == rightMinParent->left)
+                    {
+                        rightMinParent->left = rightMin->right;
+                    }
+                    else
+                    {
+                        rightMinParent->right = rightMin->right;
+                    }
                     delete rightMin;
                 }
 
@@ -177,8 +216,6 @@ public:
 
         return false;
     }
-
-
 
 private:
     Node* _root = nullptr;
@@ -193,10 +230,14 @@ void test()
     {
         t.Insert(e);
     }
-    t._InOrder();
 
-    t.Erase(3);
-    t._InOrder();
+    for(auto e : arr)
+    {   
+        t.InOrder();
+        t.Erase(e);
+    }
+
+
 }
 
 
