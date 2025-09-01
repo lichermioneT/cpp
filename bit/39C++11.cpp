@@ -7,6 +7,8 @@
 #include <string>
 #include <cstring>
 #include <initializer_list>
+
+
 using namespace std;
 
 class point
