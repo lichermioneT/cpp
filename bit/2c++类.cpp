@@ -278,7 +278,6 @@ int main()
 // 继承性
 // 多态性
 
-
     student s1;
     s1.print();
     cout<< s1.GetAge() <<endl;

@@ -149,11 +149,6 @@ int main()
     cout<< (d1 > d3) <<endl;
     cout<< (d3 > d1) <<endl;
 
-
-
-
-
-
     return 0;
 }
 
